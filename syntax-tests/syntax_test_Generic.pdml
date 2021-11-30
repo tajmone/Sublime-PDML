@@ -1,0 +1,40 @@
+! SYNTAX TEST "Packages/PDML/PDML.sublime-syntax"
+
+  [config
+! ^^^^^^^  meta.tag.begin
+!  ^^^^^^  entity.name.tag.localname
+! ^        punctuation.definition.tag.begin
+    [color orange]
+!   ^^^^^^          meta.tag.begin
+!         ^^^^^^^  -meta.tag
+!                ^  meta.tag,end  punctuation.definition.tag.end
+    [size
+      [width 1618]
+      [height 1000]
+    ]
+  ]
+! ^ meta.tag  punctuation.definition.tag.end
+
+  [empty]
+! ^^^^^^^  meta.tag
+!  ^^^^^   entity.name.tag.localname
+! ^        punctuation.definition.tag.begin
+!       ^  punctuation.definition.tag.end
+
+  [one[two] [three [four]]]
+! ^^^^^^^^^                   meta.tag
+!          ^                 -meta.tag
+!           ^^^^^^            meta.tag
+!                 ^          -meta.tag
+!                  ^^^^^^^^   meta.tag
+!                  ^^^^^      meta.tag.begin
+!                       ^^^   meta.tag.end
+  [one[two] [three [four]]]
+!                  ^          punctuation.definition.tag.begin
+!                       ^^^   punctuation.definition.tag.end
+  [one[two] [three [four]]]
+!  ^^^                       -punctuation.definition.tag
+!      ^^^                   -punctuation.definition.tag
+!          ^                 -punctuation.definition.tag
+!            ^^^^^^          -punctuation.definition.tag
+!                   ^^^^     -punctuation.definition.tag

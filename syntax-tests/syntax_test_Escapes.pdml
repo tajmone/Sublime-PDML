@@ -1,0 +1,49 @@
+! SYNTAX TEST "Packages/PDML/PDML.sublime-syntax"
+
+
+  \[
+! ^^ constant.character.escape
+  \]
+! ^^ constant.character.escape
+  \\
+! ^^ constant.character.escape
+
+
+  \
+! ^  invalid.illegal.character.unescaped
+  [
+! ^  invalid.illegal.character.unescaped
+  ]
+! ^ -invalid.illegal.character.unescaped
+! ^  invalid.illegal.stray-bracket-end
+
+
+[foo Characters \[, \], and \\ must be escaped.]
+!               ^^                               constant.character.escape
+!                   ^^                           constant.character.escape
+!                           ^^                   constant.character.escape
+
+[invalid unescaped \ Backslash
+!                  ^             invalid.illegal.character.unescaped
+!^^^^^^^^^^^^^^^^^^             -invalid.illegal.character.unescaped
+!                   ^^^^^^^^^^  -invalid.illegal.character.unescaped
+
+  or [ bracket]
+!    ^                           invalid.illegal.character.unescaped
+
+
+  \[
+! ^^ constant.character.escape
+  \]
+! ^^ constant.character.escape
+  \\
+! ^^ constant.character.escape
+
+
+  \
+! ^  invalid.illegal.character.unescaped
+  [
+! ^  invalid.illegal.character.unescaped
+  ]
+! ^ -invalid.illegal.character.unescaped
+! ^  invalid.illegal.stray-bracket-end

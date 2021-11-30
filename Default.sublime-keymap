@@ -1,0 +1,13 @@
+[
+  // ==============
+  // CTRL+ALT+ENTER -> new-node snippet: `[nodeID text]`
+  // ==============
+  { "keys": ["ctrl+alt+n"], "command": "insert_snippet",
+    "args": {"contents": "[${1:nodeID} ${2:text}]$0"}, "context":
+    [
+      // But not if a cursor is on an opening node:
+      { "key": "selector", "operator": "equal", "operand":
+        "text.pdml -meta.tag.begin", "match_all": true },
+    ]
+  },
+]

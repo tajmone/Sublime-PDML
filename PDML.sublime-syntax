@@ -1,0 +1,61 @@
+%YAML 1.2
+---
+# Sublime PDML: v1.0.0 (2021/11/30)
+################################################################################
+#                                                                              #
+#                  PDML (Practical Data and Markup Language)                   #
+#                                                                              #
+#                         https://pdml-lang.github.io                          #
+#                                                                              #
+################################################################################
+# PDML syntax definition for Sublime Text 4, by Tristano Ajmone, MIT License:
+#   https://github.com/tajmone/Sublime-PDML
+#
+# The Practical Data and Markup Language) was created by Christian Neumanns:
+#   https://github.com/pdml-lang
+#-------------------------------------------------------------------------------
+name: PDML (Practical Data and Markup Language)
+file_extensions:
+  - pdml
+scope: text.pdml
+version: 2 # ST4075
+
+variables:
+  node_id: '[a-zA-Z_][a-zA-Z1-9_\.-]*'
+
+contexts:
+  prototype:
+    - include: escapes
+
+  main:
+    - include: stray-bracket
+    - include: node
+
+
+  node:
+    - match: '(\[)({{node_id}})'
+      captures:
+        0: meta.tag.begin.pdml
+        1: punctuation.definition.tag.begin.pdml
+        2: entity.name.tag.localname.pdml
+      push: node_inside
+    - match: '(\[)'
+      scope: invalid.illegal.character.unescaped.pdml
+  node_inside:
+    - include: node
+    - match: ']'
+      scope: meta.tag.end.pdml punctuation.definition.tag.end.pdml
+      pop: true
+
+  stray-bracket:
+    - match: ']'
+      scope: invalid.illegal.stray-bracket-end.pdml
+
+  escapes:
+    # Escape sequences allowed: \[ \] \\
+    - match: '(\\[\[\]\\])|(\\)'
+      captures:
+        1: constant.character.escape.pdml
+        2: invalid.illegal.character.unescaped.pdml
+
+# EOF #

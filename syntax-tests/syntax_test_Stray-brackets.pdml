@@ -1,0 +1,17 @@
+! SYNTAX TEST "Packages/PDML/PDML.sublime-syntax"
+
+]
+!<-  invalid.illegal.stray-bracket-end
+
+[foo bar]
+!<-        meta.tag  punctuation.definition.tag.begin
+!^^^       meta.tag  entity.name.tag.localname
+!       ^  meta.tag  punctuation.definition.tag.end
+
+]
+!<-  invalid.illegal.stray-bracket-end
+
+[foo bar]][moo]
+!        ^      invalid.illegal.stray-bracket-end
+!       ^      -invalid.illegal.stray-bracket-end
+!         ^    -invalid.illegal.stray-bracket-end
